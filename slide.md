@@ -12,6 +12,46 @@ output: index.html
 
 --
 
+# OS?
+## [Wiki](http://zh.wikipedia.org/zh-tw/作業系統)
+
+--
+
+# Free Software, Open Source, FLOSS
+## [ref1](http://www.openfoundry.org/tw/legal-column-list/508-2010-07-15-10-50-34) / [ref2](https://www.gnu.org/philosophy/free-software-for-freedom.html)
+
+--
+
+# Richard Stallman
+
+--
+
+# GNU
+
+--
+
+# Linus Torvalds
+## Linux
+
+--
+
+# GNU/Linux
+
+--
+
+### History
+
+* [鳥哥的 Linux 私房菜](http://linux.vbird.org/linux_basic/0110whatislinux.php)
+* [Unix传奇(上篇)](http://coolshell.cn/articles/2322.html)
+* [Unix传奇(下篇)](http://coolshell.cn/articles/2324.html)
+
+--
+
+# [Linux Distro](./img/gldt1210.svg)
+## [GNU/Linux Distribution Timeline](http://futurist.se/gldt/)
+## [DistroWatch](http://distrowatch.com/)
+--
+
 # 開機流程
 
 --
@@ -35,39 +75,11 @@ output: index.html
 
 --
 
-# OS?
-## [Wiki](http://zh.wikipedia.org/zh-tw/作業系統)
+# File System
 
 --
 
-<h2>
-  <img src="./img/Tux.png" />
-</h2>
-## **Linux**
-
---
-
-<h2>
-  <img src="./img/kk-hero.jpg" height="350"/>
-</h2>
-## **Android**
-
---
-
-# Open Source
-
---
-
-## **History**
-* [鳥哥的 Linux 私房菜](http://linux.vbird.org/linux_basic/0110whatislinux.php)
-* [Unix传奇(上篇)](http://coolshell.cn/articles/2322.html)
-* [Unix传奇(下篇)](http://coolshell.cn/articles/2324.html)
-
---
-
-# [Linux Distro](./img/gldt1210.svg)
-## [GNU/Linux Distribution Timeline](http://futurist.se/gldt/)
-## [DistroWatch](http://distrowatch.com/)
+# Mount Point
 
 --
 
@@ -75,6 +87,21 @@ output: index.html
 <h2 style="font-size: 90px; font-weight: bold;">
 <a href="http://zh.wikipedia.org/zh-tw/桌面環境">Desktop Environment</a>
 </h2>
+
+--
+
+<br />
+<h2 style="font-size: 90px; font-weight: bold;">
+<a href="https://en.wikipedia.org/wiki/Display_server">Display server</a>
+</h2>
+
+--
+
+## ![](./img/Schema_of_the_layers_of_the_graphical_user_interface.svg)
+
+--
+
+# Community
 
 --
 

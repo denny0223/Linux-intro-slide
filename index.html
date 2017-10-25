@@ -8,21 +8,23 @@
     body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #222;
-  background-color: #f7f7f7;
   font-size: 100%;
 }
 
-#wrapper {
-  width: 850px;
+.slide {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  background-color: #f7f7f7;
+}
+
+.slide-content {
+  width: 800px;
   height: 600px;
   overflow: hidden;
   margin: 80px auto 0 auto;
-}
-
-.slide {
-  width: auto;
-  height: 540px;
   padding: 30px;
+
   font-weight: 200;
   font-size: 200%;
   line-height: 1.375;
@@ -34,7 +36,7 @@
   left: 20px;
 }
 
-.controls .arrow {
+.arrow {
   width: 0; height: 0;
   border: 30px solid #333;
   float: left;
@@ -48,7 +50,7 @@
   user-select: none;
 }
 
-.controls .prev {
+.prev {
   border-top-color: transparent;
   border-bottom-color: transparent;
   border-left-color: transparent;
@@ -57,7 +59,7 @@
   border-right-width: 50px;
 }
 
-.controls .next {
+.next {
   border-top-color: transparent;
   border-bottom-color: transparent;
   border-right-color: transparent;
@@ -66,24 +68,24 @@
   border-right-width: 0;
 }
 
-.controls .prev:hover {
+.prev:hover {
   border-right-color: #888;
   cursor: pointer;
 }
 
-.controls .next:hover {
+.next:hover {
   border-left-color: #888;
   cursor: pointer;
 }
 
-.slide h1 {
+h1 {
   font-size: 300%;
   line-height: 1.2;
   text-align: center;
   margin: 170px 0 0;
 }
 
-.slide h2 {
+h2 {
   font-size: 100%;
   line-height: 1.2;
   margin: 5px 0;
@@ -91,7 +93,7 @@
   font-weight: 200;
 }
 
-.slide h3 {
+h3 {
   font-size: 140%;
   line-height: 1.2;
   border-bottom: 1px solid #aaa;
@@ -99,20 +101,20 @@
   padding-bottom: 15px;
 }
 
-.slide ul {
+ul {
   padding: 20px 0 0 60px;
   font-weight: 200;
   line-height: 1.375;
 }
 
-.slide .author h1.name {
+.author h1 {
   font-size: 170%;
   font-weight: 200;
   text-align: center;
   margin-bottom: 30px;
 }
 
-.slide .author h3 {
+.author h3 {
   font-weight: 100;
   text-align: center;
   font-size: 95%;
@@ -137,6 +139,7 @@ pre {
   position: fixed;
   top: 0; left: 0; right: 0;
   height: 3px;
+  z-index: 1;
 }
 
 .progress-bar {
@@ -144,34 +147,39 @@ pre {
   height: 3px;
   background-color: #b4b4b4;
 
-  -webkit-transition: width 0.1s ease-out;
-  -moz-transition: width 0.1s ease-out;
-  -o-transition: width 0.1s ease-out;
-  transition: width 0.1s ease-out;
+  -webkit-transition: width 0.05s ease-out;
+  -moz-transition: width 0.05s ease-out;
+  -o-transition: width 0.05s ease-out;
+  transition: width 0.05s ease-out;
+}
+
+.hidden {
+  display: none;
 }
 
 @media (max-width: 850px) {
-  #wrapper {
-    width: auto;
-  }
 
   body {
     font-size: 70%;
+  }
+
+  .slide-content {
+    width: auto;
   }
 
   img {
     width: 100%;
   }
 
-  .slide h1 {
+  h1 {
     margin-top: 120px;
   }
 
-  .controls .prev, .controls .prev:hover {
+  .prev, .prev:hover {
     border-right-color: rgba(135, 135, 135, 0.5);
   }
 
-  .controls .next, .controls .next:hover {
+  .next, .next:hover {
     border-left-color: rgba(135, 135, 135, 0.5);
   }
 }
@@ -182,21 +190,17 @@ pre {
     overflow: hidden;
   }
 
-  #wrapper {
+  .slide-content {
+    padding: 10px;
     margin-top: 10px;
     height: 340px;
   }
 
-  .slide {
-    padding: 10px;
-    height: 340px;
-  }
-
-  .slide h1 {
+  h1 {
     margin-top: 50px;
   }
 
-  .slide ul {
+  ul {
     padding-left: 25px;
   }
 }
@@ -208,6 +212,10 @@ pre {
 
   @page {
     size: letter;
+  }
+
+  .hidden {
+    display: inline;
   }
 
   html {
@@ -230,159 +238,122 @@ pre {
     display: none;
   }
 
-  #wrapper {
-    overflow: visible;
-    height: 100%;
-    margin-top: 0;
+  .slide {
+    position: static;
   }
 
-  .slide {
+  .slide-content {
     border: 1px solid #222;
+    margin-top: 0;
     margin-bottom: 40px;
     height: 3.5in;
+    overflow: visible;
   }
 
-  .slide:nth-child(odd) {
+  .slide:nth-child(even) {
     /* 2 slides per page */
     page-break-before: always;
   }
 }
 
 /*
+
 github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
 */
 
-code, pre {
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  overflow: auto;
-  padding: 6px 10px;
-}
-
-code {
-  padding: 0 5px;
-}
-
-pre>code {
-  margin: 0; padding: 0;
-  border: none;
-  background: transparent;
-}
-
-pre .comment,
-pre .template_comment,
-pre .diff .header,
-pre .javadoc {
-  color: #998;
-  font-style: italic
-}
-
-pre .keyword,
-pre .css .rule .keyword,
-pre .winutils,
-pre .javascript .title,
-pre .nginx .title,
-pre .subst,
-pre .request,
-pre .status {
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
   color: #333;
-  font-weight: bold
+  background: #f8f8f8;
 }
 
-pre .number,
-pre .hexcolor,
-pre .ruby .constant {
-  color: #099;
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
 }
 
-pre .string,
-pre .tag .value,
-pre .phpdoc,
-pre .tex .formula {
-  color: #d14
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
 }
 
-pre .title,
-pre .id {
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
   color: #900;
-  font-weight: bold
+  font-weight: bold;
 }
 
-pre .javascript .title,
-pre .lisp .title,
-pre .clojure .title,
-pre .subst {
-  font-weight: normal
+.hljs-subst {
+  font-weight: normal;
 }
 
-pre .class .title,
-pre .haskell .type,
-pre .vhdl .literal,
-pre .tex .command {
+.hljs-type,
+.hljs-class .hljs-title {
   color: #458;
-  font-weight: bold
+  font-weight: bold;
 }
 
-pre .tag,
-pre .tag .title,
-pre .rules .property,
-pre .django .tag .keyword {
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
   color: #000080;
-  font-weight: normal
+  font-weight: normal;
 }
 
-pre .attribute,
-pre .variable,
-pre .lisp .body {
-  color: #008080
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
 }
 
-pre .regexp {
-  color: #009926
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
 }
 
-pre .class {
-  color: #458;
-  font-weight: bold
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
 }
 
-pre .symbol,
-pre .ruby .symbol .string,
-pre .lisp .keyword,
-pre .tex .special,
-pre .prompt {
-  color: #990073
-}
-
-pre .built_in,
-pre .lisp .title,
-pre .clojure .built_in {
-  color: #0086b3
-}
-
-pre .preprocessor,
-pre .pi,
-pre .doctype,
-pre .shebang,
-pre .cdata {
+.hljs-meta {
   color: #999;
-  font-weight: bold
+  font-weight: bold;
 }
 
-pre .deletion {
-  background: #fdd
+.hljs-deletion {
+  background: #fdd;
 }
 
-pre .addition {
-  background: #dfd
+.hljs-addition {
+  background: #dfd;
 }
 
-pre .diff .change {
-  background: #0086b3
+.hljs-emphasis {
+  font-style: italic;
 }
 
-pre .chunk {
-  color: #aaa
+.hljs-strong {
+  font-weight: bold;
 }
 
 
@@ -393,58 +364,111 @@ pre .chunk {
     <div class="progress-bar"></div>
   </div>
 
-<div id="wrapper">
-    <section class="slide"><p><h1 style="font-size: 72px">
+  <div class="slide" id="slide-1">
+    <section class="slide-content"><p><h1 style="font-size: 72px">
 深入淺出 Linux
 </h1>
 <br /></p>
 <h2 id="denny-huang">Denny Huang</h2>
 </section>
-    <section class="slide"><h1 id="-">開機流程</h1>
-</section>
-    <section class="slide"><p><video width="780" controls>
-  <source src="./video/boot_x86.webm" type="video/webm" />
-</video>
-<a style="font-size: 20px" href="http://people.cs.nctu.edu.tw/~huangmc/works/web/Boot_x86/Boot_x86.html#FLASH">src</a></p>
-</section>
-    <section class="slide"><h1 id="-bios-http-zh-wikipedia-org-zh-tw-bios-uefi-http-zh-wikipedia-org-zh-tw-uefi-"><a href="http://zh.wikipedia.org/zh-tw/BIOS">BIOS</a> / <a href="http://zh.wikipedia.org/zh-tw/UEFI">UEFI</a></h1>
-</section>
-    <section class="slide"><h1 id="-mbr-http-zh-wikipedia-org-zh-tw-gpt-http-zh-wikipedia-org-zh-tw-guid-"><a href="http://zh.wikipedia.org/zh-tw/主開機紀錄">MBR</a> / <a href="http://zh.wikipedia.org/zh-tw/GUID磁碟分割表">GPT</a></h1>
-</section>
-    <section class="slide"><h1 id="-boot-loader-http-zh-wikipedia-org-zh-tw-"><a href="http://zh.wikipedia.org/zh-tw/啟動程式">Boot Loader</a></h1>
-</section>
-    <section class="slide"><h1 id="os-">OS?</h1>
+  </div>
+  <div class="slide hidden" id="slide-2">
+    <section class="slide-content"><h1 id="os-">OS?</h1>
 <h2 id="-wiki-http-zh-wikipedia-org-zh-tw-"><a href="http://zh.wikipedia.org/zh-tw/作業系統">Wiki</a></h2>
 </section>
-    <section class="slide"><p><h2>
-  <img src="./img/Tux.png" />
-</h2></p>
-<h2 id="-linux-"><strong>Linux</strong></h2>
+  </div>
+  <div class="slide hidden" id="slide-3">
+    <section class="slide-content"><h1 id="free-software-open-source-floss">Free Software, Open Source, FLOSS</h1>
+<h2 id="-ref1-http-www-openfoundry-org-tw-legal-column-list-508-2010-07-15-10-50-34-ref2-https-www-gnu-org-philosophy-free-software-for-freedom-html-"><a href="http://www.openfoundry.org/tw/legal-column-list/508-2010-07-15-10-50-34">ref1</a> / <a href="https://www.gnu.org/philosophy/free-software-for-freedom.html">ref2</a></h2>
 </section>
-    <section class="slide"><p><h2>
-  <img src="./img/kk-hero.jpg" height="350"/>
-</h2></p>
-<h2 id="-android-"><strong>Android</strong></h2>
+  </div>
+  <div class="slide hidden" id="slide-4">
+    <section class="slide-content"><h1 id="richard-stallman">Richard Stallman</h1>
 </section>
-    <section class="slide"><h1 id="open-source">Open Source</h1>
+  </div>
+  <div class="slide hidden" id="slide-5">
+    <section class="slide-content"><h1 id="gnu">GNU</h1>
 </section>
-    <section class="slide"><h2 id="-history-"><strong>History</strong></h2>
+  </div>
+  <div class="slide hidden" id="slide-6">
+    <section class="slide-content"><h1 id="linus-torvalds">Linus Torvalds</h1>
+<h2 id="linux">Linux</h2>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-7">
+    <section class="slide-content"><h1 id="gnu-linux">GNU/Linux</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-8">
+    <section class="slide-content"><h3 id="history">History</h3>
 <ul>
 <li><a href="http://linux.vbird.org/linux_basic/0110whatislinux.php">鳥哥的 Linux 私房菜</a></li>
 <li><a href="http://coolshell.cn/articles/2322.html">Unix传奇(上篇)</a></li>
 <li><a href="http://coolshell.cn/articles/2324.html">Unix传奇(下篇)</a></li>
 </ul>
 </section>
-    <section class="slide"><h1 id="-linux-distro-img-gldt1210-svg-"><a href="./img/gldt1210.svg">Linux Distro</a></h1>
+  </div>
+  <div class="slide hidden" id="slide-9">
+    <section class="slide-content"><h1 id="-linux-distro-img-gldt1210-svg-"><a href="./img/gldt1210.svg">Linux Distro</a></h1>
 <h2 id="-gnu-linux-distribution-timeline-http-futurist-se-gldt-"><a href="http://futurist.se/gldt/">GNU/Linux Distribution Timeline</a></h2>
 <h2 id="-distrowatch-http-distrowatch-com-"><a href="http://distrowatch.com/">DistroWatch</a></h2>
 </section>
-    <section class="slide"><p><br /></p>
+  </div>
+  <div class="slide hidden" id="slide-10">
+    <section class="slide-content"><h1 id="-">開機流程</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-11">
+    <section class="slide-content"><p><video width="780" controls>
+  <source src="./video/boot_x86.webm" type="video/webm" />
+</video>
+<a style="font-size: 20px" href="http://people.cs.nctu.edu.tw/~huangmc/works/web/Boot_x86/Boot_x86.html#FLASH">src</a></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-12">
+    <section class="slide-content"><h1 id="-bios-http-zh-wikipedia-org-zh-tw-bios-uefi-http-zh-wikipedia-org-zh-tw-uefi-"><a href="http://zh.wikipedia.org/zh-tw/BIOS">BIOS</a> / <a href="http://zh.wikipedia.org/zh-tw/UEFI">UEFI</a></h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-13">
+    <section class="slide-content"><h1 id="-mbr-http-zh-wikipedia-org-zh-tw-gpt-http-zh-wikipedia-org-zh-tw-guid-"><a href="http://zh.wikipedia.org/zh-tw/主開機紀錄">MBR</a> / <a href="http://zh.wikipedia.org/zh-tw/GUID磁碟分割表">GPT</a></h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-14">
+    <section class="slide-content"><h1 id="-boot-loader-http-zh-wikipedia-org-zh-tw-"><a href="http://zh.wikipedia.org/zh-tw/啟動程式">Boot Loader</a></h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-15">
+    <section class="slide-content"><h1 id="file-system">File System</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-16">
+    <section class="slide-content"><h1 id="mount-point">Mount Point</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-17">
+    <section class="slide-content"><p><br /></p>
 <h2 style="font-size: 90px; font-weight: bold;">
 <a href="http://zh.wikipedia.org/zh-tw/桌面環境">Desktop Environment</a>
 </h2></section>
-    <section class="slide"><h1 style="font-size:72px">Thanks for listening</h1></section>
-</div>
+  </div>
+  <div class="slide hidden" id="slide-18">
+    <section class="slide-content"><p><br /></p>
+<h2 style="font-size: 90px; font-weight: bold;">
+<a href="https://en.wikipedia.org/wiki/Display_server">Display server</a>
+</h2></section>
+  </div>
+  <div class="slide hidden" id="slide-19">
+    <section class="slide-content"><h2 id="-img-schema_of_the_layers_of_the_graphical_user_interface-svg-"><img src="./img/Schema_of_the_layers_of_the_graphical_user_interface.svg" alt=""></h2>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-20">
+    <section class="slide-content"><h1 id="community">Community</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-21">
+    <section class="slide-content"><h1 style="font-size:72px">Thanks for listening</h1></section>
+  </div>
+
   <div class="controls">
     <div class="arrow prev"></div>
     <div class="arrow next"></div>
@@ -453,107 +477,62 @@ pre .chunk {
 
   <script type="text/javascript">
     /**
- * Takes the last slide and places it at the front.
+ * Returns the current page number of the presentation.
  */
-function goBack() {
-  var wrapper = document.querySelector('#wrapper');
-  var lastSlide = wrapper.lastChild;
-  while (lastSlide != null && lastSlide.nodeType !== 1) {
-    lastSlide = lastSlide.previousSibling;
-  }
-
-  wrapper.removeChild(lastSlide);
-  wrapper.insertBefore(lastSlide, wrapper.firstChild);
-
-  setCurrentProgress();
-  updateURL();
-  updateTabIndex();
+function currentPosition() {
+  return parseInt(document.querySelector('.slide:not(.hidden)').id.slice(6));
 }
+
 
 /**
- * Takes the first slide and places it at the end.
+ * Navigates forward n pages
+ * If n is negative, we will navigate in reverse
  */
-function goForward() {
-  var wrapper = document.querySelector('#wrapper');
-  var firstSlide = wrapper.firstChild;
-  while (firstSlide != null && firstSlide.nodeType !== 1) {
-    firstSlide = firstSlide.nextSibling;
-  }
+function navigate(n) {
+  var position = currentPosition();
+  var numSlides = document.getElementsByClassName('slide').length;
 
-  wrapper.removeChild(firstSlide);
-  wrapper.appendChild(firstSlide);
+  /* Positions are 1-indexed, so we need to add and subtract 1 */
+  var nextPosition = (position - 1 + n) % numSlides + 1;
 
-  setCurrentProgress();
+  /* Normalize nextPosition in-case of a negative modulo result */
+  nextPosition = (nextPosition - 1 + numSlides) % numSlides + 1;
+
+  document.getElementById('slide-' + position).classList.add('hidden');
+  document.getElementById('slide-' + nextPosition).classList.remove('hidden');
+
+  updateProgress();
   updateURL();
   updateTabIndex();
 }
+
 
 /**
  * Updates the current URL to include a hashtag of the current page number.
  */
 function updateURL() {
-  window.history.replaceState({} , null, '#' + currentPage());
-}
-
-/**
- * Returns the current page number of the presentation.
- */
-function currentPage() {
-  return document.querySelector('#wrapper .slide').dataset.page;
-}
-
-/**
- * Returns a NodeList of each .slide element.
- */
-function allSlides() {
-  return document.querySelectorAll('#wrapper .slide');
-}
-
-/**
- * Give each slide a "page" data attribute.
- */
-function setPageNumbers() {
-  var wrapper = document.querySelector('#wrapper');
-  var pages   = wrapper.querySelectorAll('section');
-  var page;
-
-  for (var i = 0; i < pages.length; ++i) {
-    page = pages[i];
-    page.dataset.page = i;
+  try {
+    window.history.replaceState({} , null, '#' + currentPosition());
+  } catch (e) {
+    window.location.hash = currentPosition();
   }
 }
 
+
 /**
- * Set the current progress indicator.
+ * Sets the progress indicator.
  */
-function setCurrentProgress() {
-  var wrapper = document.querySelector('#wrapper');
+function updateProgress() {
   var progressBar = document.querySelector('.progress-bar');
 
   if (progressBar !== null) {
-    var pagesNumber    = wrapper.querySelectorAll('section').length;
-    var currentNumber  = parseInt(currentPage());
-    var currentPercent = pagesNumber === 1 ? 100 : 100 * currentNumber / (pagesNumber - 1);
-    progressBar.style.width = currentPercent.toString() + '%';
+    var numSlides = document.getElementsByClassName('slide').length;
+    var position = currentPosition() - 1;
+    var percent = (numSlides === 1) ? 100 : 100 * position / (numSlides - 1);
+    progressBar.style.width = percent.toString() + '%';
   }
 }
 
-/**
- * Go to the specified page of content.
- */
-function goToPage(page) {
-  // Try to find the target slide.
-  var targetSlide = document.querySelector('#wrapper .slide[data-page="' + page + '"]');
-
-  // If it actually exists, go forward until we find it.
-  if (targetSlide) {
-    var numSlides = allSlides().length;
-
-    for (var i = 0; currentPage() != page && i < numSlides; i++) {
-      goForward();
-    }
-  }
-}
 
 /**
  * Removes tabindex property from all links on the current slide, sets
@@ -562,7 +541,8 @@ function goToPage(page) {
  */
 function updateTabIndex() {
   var allLinks = document.querySelectorAll('.slide a');
-  var currentPageLinks = document.querySelector('.slide').querySelectorAll('a');
+  var position = currentPosition();
+  var currentPageLinks = document.getElementById('slide-' + position).querySelectorAll('a');
   var i;
 
   for (i = 0; i < allLinks.length; i++) {
@@ -570,47 +550,81 @@ function updateTabIndex() {
   }
 
   for (i = 0; i < currentPageLinks.length; i++) {
-    allLinks[i].removeAttribute('tabindex');
+    currentPageLinks[i].removeAttribute('tabindex');
   }
 }
 
-window.onload = function () {
+/**
+ * Determines whether or not we are currently in full screen mode
+ */
+function isFullScreen() {
+  return document.fullscreenElement ||
+         document.mozFullScreenElement ||
+         document.webkitFullscreenElement ||
+         document.msFullscreenElement;
+}
 
-  // Give each slide a "page" data attribute.
-  setPageNumbers();
+/**
+ * Toggle fullScreen mode on document element.
+ * Works on chrome (>= 15), firefox (>= 9), ie (>= 11), opera(>= 12.1), safari (>= 5).
+ */
+function toggleFullScreen() {
+  /* Convenient renames */
+  var docElem = document.documentElement;
+  var doc = document;
 
+  docElem.requestFullscreen =
+      docElem.requestFullscreen ||
+      docElem.msRequestFullscreen ||
+      docElem.mozRequestFullScreen ||
+      docElem.webkitRequestFullscreen.bind(docElem, Element.ALLOW_KEYBOARD_INPUT);
+
+  doc.exitFullscreen =
+      doc.exitFullscreen ||
+      doc.msExitFullscreen ||
+      doc.mozCancelFullScreen ||
+      doc.webkitExitFullscreen;
+
+  isFullScreen() ? doc.exitFullscreen() : docElem.requestFullscreen();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
   // Update the tabindex to prevent weird slide transitioning
   updateTabIndex();
 
   // If the location hash specifies a page number, go to it.
   var page = window.location.hash.slice(1);
-  if (page) goToPage(page);
+  if (page) {
+    navigate(parseInt(page) - 1);
+  }
 
   document.onkeydown = function (e) {
     var kc = e.keyCode;
 
     // left, down, H, J, backspace, PgUp - BACK
-    // up, right, K, L, space, enter, PgDn - FORWARD
-    if (kc == 37 || kc == 40 || kc == 8 || kc == 72 || kc == 74 || kc == 33) {
-      goBack();
-    } else if (kc == 38 || kc == 39 || kc == 13 || kc == 32 || kc == 75 || kc == 76 || kc == 34) {
-      goForward();
+    // up, right, K, L, space, PgDn - FORWARD
+    // enter - FULLSCREEN
+    if (kc === 37 || kc === 40 || kc === 8 || kc === 72 || kc === 74 || kc === 33) {
+      navigate(-1);
+    } else if (kc === 38 || kc === 39 || kc === 32 || kc === 75 || kc === 76 || kc === 34) {
+      navigate(1);
+    } else if (kc === 13) {
+      toggleFullScreen();
     }
-  }
+  };
 
   if (document.querySelector('.next') && document.querySelector('.prev')) {
     document.querySelector('.next').onclick = function (e) {
       e.preventDefault();
-      goForward();
-    }
+      navigate(1);
+    };
 
     document.querySelector('.prev').onclick = function (e) {
       e.preventDefault();
-      goBack();
-    }
+      navigate(-1);
+    };
   }
-
-}
+});
 
 
   </script>
