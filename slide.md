@@ -47,8 +47,8 @@ output: index.html
 
 --
 
-# [Linux Distro](./img/gldt1210.svg)
-## [GNU/Linux Distribution Timeline](http://futurist.se/gldt/)
+# [Linux Distro](./img/Linux_Distribution_Timeline.svg)
+## [GNU/Linux Distribution Timeline](https://github.com/FabioLolix/LinuxTimeline)
 ## [DistroWatch](http://distrowatch.com/)
 --
 
@@ -59,7 +59,7 @@ output: index.html
 <video width="780" controls>
   <source src="./video/boot_x86.webm" type="video/webm" />
 </video>
-<a style="font-size: 20px" href="http://people.cs.nctu.edu.tw/~huangmc/works/web/Boot_x86/Boot_x86.html#FLASH">src</a> 
+<a style="font-size: 20px" href="http://people.cs.nctu.edu.tw/~huangmc/works/web/Boot_x86/Boot_x86.html#FLASH">src</a>
 
 --
 
