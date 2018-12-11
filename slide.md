@@ -12,8 +12,34 @@ output: index.html
 
 --
 
+### Who am I ?
+
+<br />
+<h2 style="font-size: 60px">
+  <b>Denny Huang</b>
+</h2>
+
+* 雷亞遊戲 Rayark Inc.
+
+* SITCON 學生計算機年會
+
+* <a href="https://denny.one/" target="_blank">About me</a>
+
+--
+
 # OS?
 ## [Wiki](http://zh.wikipedia.org/zh-tw/作業系統)
+
+--
+
+<div align="center">
+<iframe width="780" height="500" src="https://www.youtube.com/embed/6NhyCXJU-IQ" frameborder="0" allowfullscreen></iframe>
+</div>
+<div align="right">
+  <font size="3">
+     By Bit Blueprint / Jimmy Huang
+  </font>
+</div>
 
 --
 
